@@ -66,12 +66,14 @@ namespace HKTimer {
             if (StringInputManager.GetKeyDown(HKTimer.settings.pause)) {
                 timerActive ^= true;
                 OnTimerPause?.Invoke();
+                HKTimer.instance.Log("Timer " + (timerActive ? "started" : "stopped") + " manually" + (timerActive ? "" : " at " + time.TotalSeconds));
             }
             if (StringInputManager.GetKeyDown(HKTimer.settings.reset)) {
                 time = TimeSpan.Zero;
                 timerActive = false;
                 updateTimer = true;
                 OnTimerReset?.Invoke();
+                HKTimer.instance.Log("Timer reset manually.");
             }
             if (timerActive && !TimerShouldBePaused()) {
                 time += System.TimeSpan.FromSeconds(Time.unscaledDeltaTime);
@@ -143,8 +145,7 @@ namespace HKTimer {
                     && (uiState != UIState.PAUSED || loadingMenu)
                     && (!string.IsNullOrEmpty(nextScene) || sceneName == "_test_charms" || loadingMenu)
                     && nextScene != sceneName
-                )
-                || (bool)gameManagerDirtyTileMap.GetValue(GameManager.instance);
+                );
 
             lastGameState = gameState;
 

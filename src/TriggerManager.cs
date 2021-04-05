@@ -197,7 +197,7 @@ namespace HKTimer {
             };
         }
         public void Start() {
-            Modding.Logger.Log("[HKTimer] Started target manager");
+            HKTimer.instance.Log("Started target manager");
             LoadTriggers();
         }
         public void Update() {
@@ -240,6 +240,7 @@ namespace HKTimer {
                 this.start.Spawn(this);
                 this.pb = TimeSpan.Zero;
                 this.pbDisplay.GetComponent<Text>().text = this.PbText();
+                HKTimer.instance.Log("Start trigger placed.");
             }
             if(StringInputManager.GetKeyDown(HKTimer.settings.set_end)) {
                 this.end?.Destroy(this);
@@ -268,6 +269,7 @@ namespace HKTimer {
                 this.end.Spawn(this);
                 this.pb = TimeSpan.Zero;
                 this.pbDisplay.GetComponent<Text>().text = this.PbText();
+                HKTimer.instance.Log("End trigger placed.");
             }
         }
         public void OnDestroy() {
@@ -346,10 +348,10 @@ namespace HKTimer {
                         var successful = false;
                         OnLogicPreset.Invoke(s, ref successful);
                         if(!successful) {
-                            Modding.Logger.LogError("[HKTimer] Invalid logic preset `" + s + "`");
+                            HKTimer.instance.LogError("Invalid logic preset `" + s + "`");
                         }
                     } else {
-                        Modding.Logger.LogError("[HKTimer] Invalid logic `" + v.ToString() + "`");
+                        HKTimer.instance.LogError("Invalid logic `" + v.ToString() + "`");
                     }
                     break;
                 case JObject v:
@@ -366,12 +368,12 @@ namespace HKTimer {
                             }
                             trigger.TriggerCommand(lcmd.command, lcmd.data);
                         } catch(Exception e) {
-                            Modding.Logger.LogError(e);
+                            HKTimer.instance.LogError(e);
                         }
                     }
                     break;
                 default:
-                    Modding.Logger.LogError("[HKTimer] Invalid logic `" + logic.ToString() + "`");
+                    HKTimer.instance.LogError("Invalid logic `" + logic.ToString() + "`");
                     break;
             }
         }

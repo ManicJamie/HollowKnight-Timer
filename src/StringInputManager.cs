@@ -7,7 +7,7 @@ namespace HKTimer {
                 try {
                     if (s != null) Input.GetKeyDown(s);
                 } catch {
-                    Modding.Logger.LogError("Invalid key code '" + s + "'");
+                    HKTimer.instance.LogError("Invalid key code '" + s + "'");
                 }
             }
         }

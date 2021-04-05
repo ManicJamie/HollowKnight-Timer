@@ -38,8 +38,7 @@
         </Reference>
     </ItemGroup>
     <Target Name="CopyMod" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="..\\..\\references\\1221-modded\\Mods\\" SkipUnchangedFiles="false" />
-        <Copy SourceFiles="$(SolutionDir)/JsonNet/Newtonsoft.Json.dll" DestinationFolder="..\\..\\references\\1221-modded\\Mods\\" SkipUnchangedFiles="false" />
+      <Copy SourceFiles="$(TargetPath)" DestinationFolder="..\\..\\references\\1221-modded\\Mods\\" SkipUnchangedFiles="false" />
         <Copy SourceFiles="$(SolutionDir)/JsonNet/System.Runtime.Serialization.dll" DestinationFolder="..\\..\\references\\1221-modded\\Mods\\" SkipUnchangedFiles="false" />
     </Target>
     <Target Name="CreateReleaseZip" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
