@@ -262,3 +262,9 @@ __pycache__/
 
 Distribution/
 *.zip
+
+.vscode/
+
+src/Output/
+
+HKTimer.dll
